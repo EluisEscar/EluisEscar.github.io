@@ -11594,6 +11594,7 @@ html {
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
+  clip-path: inset(0px 0px 5% 0px);
 }
 .profile .dots-1 {
   position: absolute;
