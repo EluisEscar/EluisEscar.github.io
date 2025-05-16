@@ -11762,9 +11762,3 @@ html {
   }
 }
 
-@media (max-width: 767.98px) {
-  .skill-mobile-center {
-    justify-content: center !important;
-    text-align: center !important;
-  }
-}
