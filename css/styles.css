@@ -7897,11 +7897,6 @@ textarea.form-control-lg {
     text-align: justify;
   }
 
-  .card-body .d-flex {
-    flex-direction: column !important;
-    align-items: center !important;
-  }
-
   .card-body {
     padding: 1rem !important;
   }
@@ -11764,5 +11759,12 @@ html {
   .profile .dots-4 {
     width: 1.5vw;
     left: -2vw;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .skill-mobile-center {
+    justify-content: center !important;
+    text-align: center !important;
   }
 }
