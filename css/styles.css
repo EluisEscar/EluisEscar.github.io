@@ -602,6 +602,7 @@ progress {
   height: auto;
 }
 
+
 .img-thumbnail {
   padding: 0.25rem;
   background-color: #fff;
@@ -7875,6 +7876,38 @@ textarea.form-control-lg {
 .p-5 {
   padding: 3rem !important;
 }
+
+@media (max-width: 768px) {
+  .proyecto-texto {
+    padding: 1rem !important;
+    order: 1; /* el texto aparece antes que la imagen */
+  }
+
+  .proyecto-img {
+    max-height: 140px;
+    width: 100%;
+    object-fit: contain;
+    margin: 0 auto;
+    order: 2;
+  }
+
+  .proyecto-descripcion {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    text-align: justify;
+  }
+
+  .card-body .d-flex {
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  .card-body {
+    padding: 1rem !important;
+  }
+}
+
+
 
 .px-0 {
   padding-right: 0 !important;
