@@ -4085,6 +4085,24 @@ textarea.form-control-lg {
     overflow-y: visible;
   }
 }
+@media (max-width: 575.98px) {
+  .navbar-collapse {
+    text-align: right; /* Alinea el contenido al final */
+  }
+
+  .navbar-nav {
+    align-items: flex-end; /* Alinea los ítems hacia la derecha */
+  }
+
+  .nav-item {
+    width: 100%; /* Para que el área clickeable ocupe todo el ancho */
+  }
+
+  .nav-link {
+    display: inline-block;
+    padding-right: 1rem; /* Espaciado desde la derecha */
+  }
+}
 .navbar-expand {
   flex-wrap: nowrap;
   justify-content: flex-start;
@@ -11760,4 +11778,13 @@ html {
     justify-content: center !important;
     text-align: center !important;
   }
+}
+#typewriter::after {
+  content: "|";
+  animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
 }
