@@ -16,6 +16,8 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
+        <!--AOS-->
+        <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
     </head>
     <body class="d-flex flex-column h-100 bg-light">
         <main class="flex-shrink-0">
@@ -38,7 +40,7 @@
             <section class="py-5">
                 <div class="container px-5 mb-5">
                     <div class="text-center mb-5">
-                        <h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">Proyectos</span></h1>
+                        <h1 class="display-5 fw-bolder mb-0" data-aos="fade-up" data-aos-delay="200"><span class="text-gradient d-inline">Proyectos</span></h1>
                     </div>
                     <div class="row gx-5 justify-content-center">
                         <div class="col-lg-11 col-xl-9 col-xxl-8">
@@ -60,7 +62,7 @@
                             </div>
                         -->
                         <a href="https://github.com/EluisEscar/CNN-Senias" target="_blank" class="card-link" style="text-decoration: none; color: inherit;">
-                           <div class="card overflow-hidden shadow rounded-4 border-0 mb-5">
+                           <div class="card overflow-hidden shadow rounded-4 border-0 mb-5" data-aos="fade-left">
                                 <div class="card-body p-0">
                                     <div class="d-flex flex-column flex-md-row align-items-center">
                                         <div class="p-5 proyecto-texto">
@@ -80,7 +82,7 @@
                             </a>
                             <!-- Project Card 2-->
                             <a href="https://github.com/EluisEscar/Website-PHP" target="_blank" class="card-link" style="text-decoration: none; color: inherit;">
-                                <div class="card overflow-hidden shadow rounded-4 border-0">
+                                <div class="card overflow-hidden shadow rounded-4 border-0" data-aos="fade-right">
                                     <div class="card-body p-0">
                                         <div class="d-flex flex-column flex-md-row align-items-center">
                                             <div class="p-5 proyecto-texto">
@@ -98,7 +100,7 @@
                             </a>
                             <!-- Project Card 3-->
                             <a href="https://github.com/EluisEscar/SharkTank-BI" target="_blank" class="card-link" style="text-decoration: none; color: inherit;">
-                                <div class="card overflow-hidden shadow rounded-4 border-0 mt-5">
+                                <div class="card overflow-hidden shadow rounded-4 border-0 mt-5" data-aos="fade-left">
                                     <div class="card-body p-0">
                                         <div class="d-flex flex-column flex-md-row align-items-center">
                                             <div class="p-5 proyecto-texto">
@@ -147,5 +149,12 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+        <script>
+            AOS.init({
+                duration: 1200,
+                once: true
+            });
+        </script>
     </body>
 </html>

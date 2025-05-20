@@ -1,40 +1,3 @@
-/*!
-* Start Bootstrap - Personal v1.0.1 (https://startbootstrap.com/template-overviews/personal)
-* Copyright 2013-2023 Start Bootstrap
-* Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-personal/blob/master/LICENSE)
-*/
-// This file is intentionally blank
-// Use this file to add JavaScript to your project
-/*
-  const texto = "Automatiza, Optimiza, Evoluciona";
-  const el = document.getElementById("typewriter");
-  let index = 0;
-  let borrar = false;
-
-  function escribir() {
-    if (!borrar && index <= texto.length) {
-      el.textContent = texto.substring(0, index++);
-    } else if (borrar && index >= 0) {
-      el.textContent = texto.substring(0, index--);
-    }
-
-    if (index === texto.length + 1) {
-      borrar = true;
-      setTimeout(escribir, 1000); // espera antes de borrar
-      return;
-    } else if (index === 0 && borrar) {
-      borrar = false;
-      setTimeout(escribir, 500); // espera antes de volver a escribir
-      return;
-    }
-
-    setTimeout(escribir, borrar ? 50 : 100); // velocidad de escritura/borrado
-  }
-
-  escribir();
-
-*/
-
 function typewriterEffect(id, text, speed = 100, loop = false) {
   const el = document.getElementById(id);
   let i = 0;
@@ -64,5 +27,75 @@ function typewriterEffect(id, text, speed = 100, loop = false) {
 
   escribir();
 }
+/*
+function typewriterOnView(el, text, speed = 100) {
+  let i = 0;
+
+  function escribir() {
+    if (i <= text.length) {
+      el.textContent = text.substring(0, i++);
+      setTimeout(escribir, speed);
+    }
+  }
+
+  escribir();
+}
+
+const observer = new IntersectionObserver((entries, obs) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const el = entry.target;
+      const text = el.getAttribute('data-text');
+      if (!el.classList.contains('typed')) {
+        el.classList.add('typed');
+        typewriterOnView(el, text, 100);
+      }
+      obs.unobserve(el); // Deja de observar después de activarse
+    }
+  });
+}, {
+  threshold: 0.5 // Se activa cuando el 50% del div es visible
+});
+
+document.querySelectorAll('.typewriter-once').forEach(el => {
+  observer.observe(el);
+});
+*/
+
+function typewriterOnView(el, text, speed, startDelay) {
+  let i = 0;
+
+  function escribir() {
+    if (i <= text.length) {
+      el.textContent = text.substring(0, i++);
+      setTimeout(escribir, speed);
+    }
+  }
+
+  // Espera antes de comenzar a escribir
+  setTimeout(escribir, startDelay);
+}
+
+const observer = new IntersectionObserver((entries, obs) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const el = entry.target;
+      const text = el.getAttribute('data-text');
+      if (!el.classList.contains('typed')) {
+        el.classList.add('typed');
+        typewriterOnView(el, text, 100, 300); // <- puedes ajustar ambos valores aquí
+      }
+      obs.unobserve(el);
+    }
+  });
+}, {
+  threshold: 0.5
+});
+
+document.querySelectorAll('.typewriter-once').forEach(el => {
+  observer.observe(el);
+});
 
 typewriterEffect("typewriter", "Automatiza, Optimiza, Evoluciona",80, true);
+
+

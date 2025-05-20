@@ -11788,3 +11788,14 @@ html {
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }
 }
+
+@media (max-width: 767.98px) {
+  .btn-responsive {
+    font-size: 0.8rem;
+    padding: 0.2rem 0.7rem !important;
+    min-width: 80px !important;
+    min-height: 32px !important;
+    border-radius: 0.5rem !important;
+    margin-left: 0.5rem !important;
+  }
+}

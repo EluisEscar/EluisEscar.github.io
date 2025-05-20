@@ -16,6 +16,8 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
+        <!--AOS-->
+        <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
     </head>
     <body class="d-flex flex-column h-100 bg-light">
         <main class="flex-shrink-0">
@@ -37,7 +39,7 @@
             <!-- Page Content-->
             <div class="container px-5 my-5">
                 <div class="text-center mb-5">
-                    <h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">Resumen</span></h1>
+                    <h1 class="display-5 fw-bolder mb-0" data-aos="fade-up" data-aos-delay="200"><span class="text-gradient d-inline">Resumen</span></h1>
                 </div>
                 <div class="row gx-5 justify-content-center">
                     <div class="col-lg-11 col-xl-9 col-xxl-8">
@@ -47,13 +49,13 @@
                                 <h2 class="text-primary fw-bolder mb-0">Experiencia</h2>
                                 <!-- Download resume button-->
                                 <!-- Note: Set the link href target to a PDF file within your project-->
-                                <a class="btn btn-primary px-4 py-3" href="assets/proyectos/archivos_personales/CV_EstebanEscarcena.pdf" target="_blank">
+                                <a class="btn btn-primary px-4 py-3 btn-responsive" href="assets/proyectos/archivos_personales/CV_EstebanEscarcena.pdf" target="_blank">
                                     <div class="d-inline-block bi bi-download me-2"></div>
                                     Descargar CV
                                 </a>
                             </div>
                             <!-- Experience Card 1-->
-                            <div class="card shadow border-0 rounded-4 mb-5">
+                            <div class="card shadow border-0 rounded-4 mb-5" data-aos="fade-right" data-aos-delay="200">
                                 <div class="card-body p-5">
                                     <div class="row align-items-center gx-5">
                                         <div class="col text-center text-lg-start mb-4 mb-lg-0">
@@ -79,7 +81,7 @@
                         <!-- Skills Section-->
                         <section>
                             <!-- Skillset Card-->
-                            <div class="card shadow border-0 rounded-4 mb-5">
+                            <div class="card shadow border-0 rounded-4 mb-5" data-aos="fade-right" data-aos-delay="200">
                                 <div class="card-body p-5">
                                     <!-- Professional skills list-->
                                     <div class="mb-5">
@@ -88,14 +90,38 @@
                                             <h3 class="fw-bolder mb-0"><span class="text-gradient d-inline">Habilidades</span></h3>
                                         </div>
                                         <div class="row row-cols-1 row-cols-md-3 mb-4">
-                                            <div class="col mb-4 mb-md-0"><div class="d-flex align-items-center bg-light rounded-4 p-3 h-100 skill-mobile-center">SEO</div></div>
-                                            <div class="col mb-4 mb-md-0"><div class="d-flex align-items-center bg-light rounded-4 p-3 h-100 skill-mobile-center">UI & UX</div></div>
-                                            <div class="col"><div class="d-flex align-items-center bg-light rounded-4 p-3 h-100 skill-mobile-center">Desarrollo Web</div></div>
+                                            <div class="col mb-4 mb-md-0">
+                                                <div class="d-flex align-items-center bg-light rounded-4 p-3 h-100 skill-mobile-center typewriter-once" data-text="SEO">
+                                                    <!--SEO-->
+                                                </div>
+                                            </div>
+                                            <div class="col mb-4 mb-md-0">
+                                                <div class="d-flex align-items-center bg-light rounded-4 p-3 h-100 skill-mobile-center typewriter-once" data-text="UI & UX">
+                                                    <!--UI & UX-->
+                                                </div>  
+                                            </div>
+                                            <div class="col mb-4 mb-md-0">
+                                                <div class="d-flex align-items-center bg-light rounded-4 p-3 h-100 skill-mobile-center typewriter-once" data-text="Desarrollo Web">
+                                                    <!--Desarrollo Web-->
+                                                </div>  
+                                            </div>
                                         </div>
                                         <div class="row row-cols-1 row-cols-md-3">
-                                            <div class="col mb-4 mb-md-0"><div class="d-flex align-items-center bg-light rounded-4 p-3 h-100 skill-mobile-center">Data Analysis</div></div>
-                                            <div class="col mb-4 mb-md-0"><div class="d-flex align-items-center bg-light rounded-4 p-3 h-100 skill-mobile-center">Machine & Deep Learning</div></div>
-                                            <div class="col"><div class="d-flex align-items-center bg-light rounded-4 p-3 h-100 skill-mobile-center">ETL/EDA</div></div>
+                                            <div class="col mb-4 mb-md-0">
+                                                <div class="d-flex align-items-center bg-light rounded-4 p-3 h-100 skill-mobile-center typewriter-once" data-text="Data Analysis">
+                                                    <!--Data Analysis-->
+                                                </div>
+                                            </div>
+                                            <div class="col mb-4 mb-md-0">
+                                                <div class="d-flex align-items-center bg-light rounded-4 p-3 h-100 skill-mobile-center typewriter-once" data-text="Machine Learning">
+                                                    <!--Machine & Deep Learning-->
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="d-flex align-items-center bg-light rounded-4 p-3 h-100 skill-mobile-center typewriter-once" data-text="ETL & EDA">
+                                                    <!--ETL/EDA-->
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <!-- Languages list-->
@@ -105,14 +131,38 @@
                                             <h3 class="fw-bolder mb-0"><span class="text-gradient d-inline">Lenguajes</span></h3>
                                         </div>
                                         <div class="row row-cols-1 row-cols-md-3 mb-4">
-                                            <div class="col mb-4 mb-md-0"><div class="d-flex align-items-center bg-light rounded-4 p-3 h-100 skill-mobile-center">PHP</div></div>
-                                            <div class="col mb-4 mb-md-0"><div class="d-flex align-items-center bg-light rounded-4 p-3 h-100 skill-mobile-center">C++</div></div>
-                                            <div class="col"><div class="d-flex align-items-center bg-light rounded-4 p-3 h-100 skill-mobile-center">JavaScript</div></div>
+                                            <div class="col mb-4 mb-md-0">
+                                                <div class="d-flex align-items-center bg-light rounded-4 p-3 h-100 skill-mobile-center typewriter-once" data-text="PHP">                                           
+                                                   <!--PHP-->
+                                                </div>
+                                            </div>
+                                            <div class="col mb-4 mb-md-0">
+                                                <div class="d-flex align-items-center bg-light rounded-4 p-3 h-100 skill-mobile-center typewriter-once" data-text="C++">
+                                                    <!--C++-->
+                                                </div>  
+                                            </div>
+                                            <div class="col">
+                                                <div class="d-flex align-items-center bg-light rounded-4 p-3 h-100 skill-mobile-center typewriter-once" data-text="JavaScript">
+                                                    <!--JavaScript-->
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="row row-cols-1 row-cols-md-3">
-                                            <div class="col mb-4 mb-md-0"><div class="d-flex align-items-center bg-light rounded-4 p-3 h-100 skill-mobile-center">Python</div></div>
-                                            <div class="col mb-4 mb-md-0"><div class="d-flex align-items-center bg-light rounded-4 p-3 h-100 skill-mobile-center">SQL</div></div>
-                                            <div class="col"><div class="d-flex align-items-center bg-light rounded-4 p-3 h-100 skill-mobile-center">Java</div></div>
+                                             <div class="col mb-4 mb-md-0">
+                                                <div class="d-flex align-items-center bg-light rounded-4 p-3 h-100 skill-mobile-center typewriter-once" data-text="Python">                                           
+                                                   <!--Python-->
+                                                </div>
+                                            </div>
+                                            <div class="col mb-4 mb-md-0">
+                                                <div class="d-flex align-items-center bg-light rounded-4 p-3 h-100 skill-mobile-center typewriter-once" data-text="SQL">
+                                                    <!--SQL-->
+                                                </div>  
+                                            </div>
+                                            <div class="col">
+                                                <div class="d-flex align-items-center bg-light rounded-4 p-3 h-100 skill-mobile-center typewriter-once" data-text="Java">
+                                                    <!--Java-->
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -141,5 +191,12 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+        <script>
+            AOS.init({
+                duration: 1200,
+                once: true
+            });
+        </script>
     </body>
 </html>
