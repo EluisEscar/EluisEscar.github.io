@@ -98,4 +98,3 @@ document.querySelectorAll('.typewriter-once').forEach(el => {
 
 typewriterEffect("typewriter", "Automatiza, Optimiza, Evoluciona",80, true);
 
-
