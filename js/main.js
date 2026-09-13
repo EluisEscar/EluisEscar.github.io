@@ -1,116 +1,86 @@
-const revealItems = document.querySelectorAll(".reveal");
+(() => {
+  'use strict';
+  const root = document.documentElement;
+  const button = document.querySelector('.theme-toggle');
+  const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let themeAnimating = false;
+  const updateTheme = () => {
+    const dark = root.dataset.theme === 'dark';
+    button?.setAttribute('aria-pressed', String(dark));
+    button?.setAttribute('aria-label', dark ? 'Activar tema claro' : 'Activar tema oscuro');
+    const icon = button?.querySelector('span');
+    if (icon) icon.textContent = dark ? '☀' : '◐';
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.content = dark ? '#181c1b' : '#f5f3ed';
+  };
+  const applyTheme = theme => {
+    root.dataset.theme = theme;
+    try { localStorage.setItem('esteban-theme', theme); } catch {}
+    updateTheme();
+  };
+  updateTheme();
+  button?.addEventListener('click', async () => {
+    if (themeAnimating) return;
+    const nextTheme = root.dataset.theme === 'dark' ? 'light' : 'dark';
+    button.classList.add('is-animating');
+    if (motion.matches || typeof document.startViewTransition !== 'function') {
+      applyTheme(nextTheme);
+      window.setTimeout(() => button.classList.remove('is-animating'), 500);
+      return;
+    }
 
-if ("IntersectionObserver" in window) {
-  const revealObserver = new IntersectionObserver(
-    (entries, observer) => {
-      entries.forEach((entry) => {
+    themeAnimating = true;
+    const rect = button.getBoundingClientRect();
+    const x = rect.left + rect.width / 2;
+    const y = rect.top + rect.height / 2;
+    const radius = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
+    const transition = document.startViewTransition(() => applyTheme(nextTheme));
+    try {
+      await transition.ready;
+      await root.animate(
+        { clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${radius}px at ${x}px ${y}px)`] },
+        { duration: 760, easing: 'cubic-bezier(.22,1,.36,1)', pseudoElement: '::view-transition-new(root)' }
+      ).finished;
+    } catch {
+      // The theme still changes if the browser cannot animate a transition pseudo-element.
+    } finally {
+      themeAnimating = false;
+      button.classList.remove('is-animating');
+    }
+  });
+  const filters = [...document.querySelectorAll('[data-filter]')];
+  const cards = [...document.querySelectorAll('[data-category]')];
+  filters.forEach(button => button.addEventListener('click', () => {
+    filters.forEach(item => {
+      item.classList.toggle('is-active', item === button);
+      item.setAttribute('aria-pressed', String(item === button));
+    });
+    cards.forEach(card => {
+      card.hidden = button.dataset.filter !== 'all' && card.dataset.category !== button.dataset.filter;
+    });
+    const count = cards.filter(card => !card.hidden).length;
+    const status = document.querySelector('.project-count');
+    if (status) status.textContent = count + ' proyectos';
+  }));
+  const targets = [...document.querySelectorAll('[data-reveal]')];
+  if ('IntersectionObserver' in window && !motion.matches) {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
         if (!entry.isIntersecting) return;
-        entry.target.classList.add("is-visible");
+        entry.target.classList.add('is-revealed');
         observer.unobserve(entry.target);
       });
-    },
-    { threshold: 0.14 }
-  );
-
-  revealItems.forEach((item) => revealObserver.observe(item));
-} else {
-  revealItems.forEach((item) => item.classList.add("is-visible"));
-}
-
-const navToggle = document.querySelector(".nav-toggle");
-const navShell = document.querySelector(".nav-shell");
-const navLinks = [...document.querySelectorAll(".nav-links a")];
-const trackedSections = [...document.querySelectorAll("main section[id]")];
-
-const closeMobileNav = () => {
-  if (!navToggle || !navShell) return;
-  navToggle.classList.remove("is-open");
-  navToggle.setAttribute("aria-expanded", "false");
-  navToggle.setAttribute("aria-label", "Abrir navegacion");
-  navShell.classList.remove("is-open");
-};
-
-const openMobileNav = () => {
-  if (!navToggle || !navShell) return;
-  navToggle.classList.add("is-open");
-  navToggle.setAttribute("aria-expanded", "true");
-  navToggle.setAttribute("aria-label", "Cerrar navegacion");
-  navShell.classList.add("is-open");
-};
-
-if (navToggle && navShell) {
-  navToggle.addEventListener("click", () => {
-    const isOpen = navToggle.classList.contains("is-open");
-    if (isOpen) {
-      closeMobileNav();
-    } else {
-      openMobileNav();
-    }
-  });
-
-  navLinks.forEach((link) => {
-    link.addEventListener("click", () => {
-      if (window.innerWidth <= 991.98) closeMobileNav();
+    }, { threshold: 0.08 });
+    targets.forEach((el, i) => {
+      el.style.setProperty('--reveal-delay', (i % 2) * 70 + 'ms');
+      el.classList.add('will-reveal');
+      observer.observe(el);
     });
-  });
-
-  window.addEventListener("resize", () => {
-    if (window.innerWidth > 991.98) closeMobileNav();
-  });
-}
-
-const setActiveLink = (id) => {
-  navLinks.forEach((link) => {
-    const isActive = link.getAttribute("href") === `#${id}`;
-    link.classList.toggle("is-active", isActive);
-  });
-};
-
-if ("IntersectionObserver" in window) {
-  const navObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) setActiveLink(entry.target.id);
-      });
-    },
-    {
-      rootMargin: "-35% 0px -45% 0px",
-      threshold: 0.2,
-    }
-  );
-
-  trackedSections.forEach((section) => navObserver.observe(section));
-}
-
-const languageNodes = [...document.querySelectorAll(".language-node")];
-const languagePanel = document.querySelector("#languagePanel");
-const languageName = document.querySelector("#languageName");
-const languageRole = document.querySelector("#languageRole");
-const languageSummary = document.querySelector("#languageSummary");
-const languageTools = document.querySelector("#languageTools");
-
-const applyLanguage = (node) => {
-  languageNodes.forEach((item) => {
-    const isActive = item === node;
-    item.classList.toggle("is-active", isActive);
-    item.setAttribute("aria-pressed", isActive ? "true" : "false");
-  });
-
-  if (!languagePanel) return;
-
-  const accent = node.dataset.accent || "#4bdcff";
-  languagePanel.style.setProperty("--panel-accent", accent);
-
-  if (languageName) languageName.textContent = node.dataset.name || "";
-  if (languageRole) languageRole.textContent = node.dataset.role || "";
-  if (languageSummary) languageSummary.textContent = node.dataset.summary || "";
-  if (languageTools) languageTools.textContent = node.dataset.tools || "";
-};
-
-languageNodes.forEach((node) => {
-  node.addEventListener("mouseenter", () => applyLanguage(node));
-  node.addEventListener("focus", () => applyLanguage(node));
-  node.addEventListener("click", () => applyLanguage(node));
-});
-
-if (languageNodes.length > 0) applyLanguage(languageNodes[0]);
+    motion.addEventListener('change', () => {
+      if (motion.matches) {
+        observer.disconnect();
+        targets.forEach(el => el.classList.remove('will-reveal'));
+      }
+    });
+  }
+})();

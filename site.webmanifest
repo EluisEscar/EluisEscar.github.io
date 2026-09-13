@@ -1,0 +1,9 @@
+{
+  "name": "Esteban Escarcena Torres",
+  "short_name": "Esteban ET",
+  "description": "Portfolio de software, desarrollo web, datos y automatización.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f5f3ed",
+  "theme_color": "#294bd6"
+}

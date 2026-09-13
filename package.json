@@ -1,0 +1,10 @@
+{
+  "name": "esteban-portfolio",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node scripts/build.mjs && node scripts/check.mjs",
+    "test:responsive": "node scripts/build.mjs && node scripts/check_responsive.mjs"
+  }
+}
