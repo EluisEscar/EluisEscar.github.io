@@ -54,7 +54,7 @@ assert.ok(sitemap.includes('<loc>https://eluisescar.github.io/</loc>'));
 assert.ok(sitemap.includes('<loc>https://eluisescar.github.io/projects/</loc>'));
 assert.ok(sitemap.includes('<loc>https://eluisescar.github.io/about/</loc>'));
 
-for (const route of ['/assets/favicon.svg', '/assets/social-preview.png', '/assets/proyectos/archivos_personales/Final-portrait.webp', '/assets/stack/python.svg', '/assets/vendor/matter.min.js', '/js/stack.js', '/assets/proyectos/archivos_personales/CV_EstebanEscarcena.pdf']) {
+for (const route of ['/assets/favicon.svg', '/assets/social-preview.png', '/assets/proyectos/archivos_personales/Final-portrait-clean-v2.webp', '/assets/stack/python.svg', '/assets/vendor/matter.min.js', '/js/stack.js', '/assets/proyectos/archivos_personales/CV_EstebanEscarcena.pdf']) {
   const response = await worker.fetch(new Request('https://portfolio.test' + route));
   assert.equal(response.status, 200, route);
   assert.match(response.headers.get('cache-control'), /immutable/, route);

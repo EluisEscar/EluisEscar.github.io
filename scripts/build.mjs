@@ -3,7 +3,7 @@ import path from 'node:path';
 
 // A dependency-free Worker bundle keeps the existing static site architecture.
 const root = process.cwd();
-const mime = { '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.png': 'image/png', '.ico': 'image/x-icon', '.pdf': 'application/pdf', '.webp': 'image/webp', '.svg': 'image/svg+xml', '.txt': 'text/plain; charset=utf-8', '.xml': 'application/xml; charset=utf-8', '.webmanifest': 'application/manifest+json; charset=utf-8' };
+const mime = { '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.ico': 'image/x-icon', '.pdf': 'application/pdf', '.webp': 'image/webp', '.svg': 'image/svg+xml', '.txt': 'text/plain; charset=utf-8', '.xml': 'application/xml; charset=utf-8', '.webmanifest': 'application/manifest+json; charset=utf-8' };
 const files = ['index.html', 'projects/index.html', 'about/index.html', 'robots.txt', 'sitemap.xml', 'site.webmanifest', 'css/editorial.css', 'js/main.js', 'js/theme.js', 'js/stack.js'];
 async function collect(directory) {
   for (const entry of await readdir(directory, { withFileTypes: true })) {
