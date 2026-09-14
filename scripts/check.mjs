@@ -4,7 +4,7 @@ import vm from 'node:vm';
 import worker from '../dist/server/index.js';
 
 const pages = [
-  ['/', 'Esteban Escarcena Torres | Software Engineer &amp; Data Developer', 'https://eluisescar.github.io/', 0],
+  ['/', 'Esteban Escarcena Torres | Software Engineer', 'https://eluisescar.github.io/', 0],
   ['/projects', 'Proyectos | Esteban Escarcena Torres', 'https://eluisescar.github.io/projects/', 0],
   ['/projects/', 'Proyectos | Esteban Escarcena Torres', 'https://eluisescar.github.io/projects/', 0],
   ['/about', 'Sobre mí | Esteban Escarcena Torres', 'https://eluisescar.github.io/about/', 10],
