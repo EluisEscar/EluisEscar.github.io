@@ -3,6 +3,7 @@
   const root = document.documentElement;
   const button = document.querySelector('.theme-toggle');
   const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const compactViewport = window.matchMedia('(max-width: 700px)');
   let themeAnimating = false;
   const updateTheme = () => {
     const dark = root.dataset.theme === 'dark';
@@ -23,9 +24,9 @@
     if (themeAnimating) return;
     const nextTheme = root.dataset.theme === 'dark' ? 'light' : 'dark';
     button.classList.add('is-animating');
-    if (motion.matches || typeof document.startViewTransition !== 'function') {
+    if (compactViewport.matches || motion.matches || typeof document.startViewTransition !== 'function') {
       applyTheme(nextTheme);
-      window.setTimeout(() => button.classList.remove('is-animating'), 500);
+      window.setTimeout(() => button.classList.remove('is-animating'), compactViewport.matches ? 360 : 500);
       return;
     }
 

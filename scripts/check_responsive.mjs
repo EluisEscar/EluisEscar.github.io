@@ -125,11 +125,13 @@ await send('Emulation.setDeviceMetricsOverride', { width: 1440, height: 1000, de
     expression: `(() => {
       const rows = [...document.querySelectorAll('.experience-row')];
       const dateLefts = rows.map(row => Math.round(row.querySelector('.experience-dates').getBoundingClientRect().left));
-      return { companies: rows.map(row => row.querySelector('h3').textContent.trim()), dateLefts };
+      const stack = document.querySelector('.stack-page').getBoundingClientRect();
+      const sectionGap = Math.round(stack.top - rows.at(-1).getBoundingClientRect().bottom);
+      return { companies: rows.map(row => row.querySelector('h3').textContent.trim()), dateLefts, sectionGap };
     })()`
   });
   const expected = ['Walt Disney World', 'Record Perú', 'Municipalidad de La Victoria'];
-  if (JSON.stringify(result.value.companies) !== JSON.stringify(expected) || new Set(result.value.dateLefts).size !== 1) {
+  if (JSON.stringify(result.value.companies) !== JSON.stringify(expected) || new Set(result.value.dateLefts).size !== 1 || result.value.sectionGap > 1) {
     failures.push({ page: '/about/', experience: result.value });
   }
 }
@@ -157,6 +159,37 @@ await send('Emulation.setDeviceMetricsOverride', { width: 1440, height: 1000, de
   if (theme.before === theme.after || theme.saved !== theme.after || theme.stillAnimating) {
     failures.push({ page: '/', theme });
   }
+}
+
+await send('Emulation.setDeviceMetricsOverride', { width: 390, height: 844, deviceScaleFactor: 1, mobile: true });
+{
+  const loaded = once('Page.loadEventFired');
+  await send('Page.navigate', { url: `http://127.0.0.1:${port}/about/` });
+  await loaded;
+  const { result } = await send('Runtime.evaluate', {
+    returnByValue: true,
+    expression: `(() => {
+      const lastExperience = document.querySelector('.experience-row:last-child').getBoundingClientRect();
+      const stack = document.querySelector('.stack-page').getBoundingClientRect();
+      return { gap: Math.round(stack.top - lastExperience.bottom) };
+    })()`
+  });
+  if (result.value.gap > 1) failures.push({ width: 390, page: '/about/', sectionGap: result.value.gap });
+}
+
+{
+  const loaded = once('Page.loadEventFired');
+  await send('Page.navigate', { url: `http://127.0.0.1:${port}/` });
+  await loaded;
+  const { result } = await send('Runtime.evaluate', {
+    returnByValue: true,
+    expression: `(() => {
+      const before = document.documentElement.dataset.theme;
+      document.querySelector('.theme-toggle').click();
+      return { before, after: document.documentElement.dataset.theme };
+    })()`
+  });
+  if (result.value.before === result.value.after) failures.push({ width: 390, page: '/', mobileTheme: result.value });
 }
 
 socket.close();
